@@ -1,4 +1,3 @@
 {
-    "board": "arduino:avr:megaADK",
-    "port": "COM4"
+    "board": "arduino:avr:mega"
 }
