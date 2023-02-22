@@ -1,0 +1,36 @@
+To initialise:
+create new repo on github 
+git init
+git add .
+git status 
+git commit -m "message"
+git remote add origin 'url'
+git push -u origin master 
+[origin is the default remote repo name , which can be checked with git remote--v, and -u flag is upstream aka -set-upstream and master is the branch]
+
+git pull 'remote name' 'branch_name' eg. git pull origin master
+[git pull is a combi of git fetch and git merge]
+
+git checkout -b 'branch name'
+git status 
+git add 'filename' or git add . (can?)
+git commit -m ''
+git push origin branchname 
+git pull-request 
+after merge(?)
+git branch --delete<branchname>
+delete branch created on git 
+merge pull request -> confirm merge 
+
+
+(on branch development)$ git merge master
+(resolve any merge conflicts if there are any)
+git checkout master
+git merge development (there won't be any conflicts now)
+git push -u origin master 
+
+// delete branch locally
+git branch -d localBranchName
+
+// delete branch remotely
+git push origin --delete remoteBranchName
