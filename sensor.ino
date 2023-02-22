@@ -43,7 +43,11 @@ int get_US_reading(){
 }
 int get_sensor_reading(int sensor_pin){
   return analogRead(sensor_pin);
-  //switcn case for different sensors when we are done writing function for each type of sensor 
+  //switch case for different sensors when we are done writing function for each type of sensor 
+}
+
+int get_line_sensor_reading(int sensor_pin){
+  return digitalRead(sensor_pin)
 }
 
 int get_US_reading(){

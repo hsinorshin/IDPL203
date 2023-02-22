@@ -4,9 +4,11 @@
 
 #include "header.h"
 #include <Wire.h>
+#include <Servo.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 
+Servo myservo; //create servo object to control a servo
 Adafruit_DCMotor *left_motor, *right_motor;
 Adafruit_MotorShield AFMS;
 int left_motor_speed, right_motor_speed;
@@ -19,10 +21,12 @@ void setup_motors() {
     AFMS.begin();
     left_motor_speed = 0;
     right_motor_speed = 0;
+    
 }
 
 int set_motor_speeds(int left_val, int right_val) { //Parameters are negative if running in reverse, positive if running forwards
-    
+    // The speed parameter is a value between 0 and 255.
+    //Note that setSpeed just controls the power delivered to the motor. The actual speed of the motor will depend on several factors, including: The motor, the power supply and the load.
     //Set left motor
     if (left_val >= 0) left_motor->run(FORWARD);
     else left_motor->run(BACKWARD);
@@ -46,4 +50,13 @@ int get_left_motor_speed() {
 
 int get_right_motor_speed() {
     return right_motor_speed;
+}
+
+void setup_servo(){
+    myservo.attach(SERVO_PIN)
+}
+
+void set_servo_position(int angle){
+    //degree should be a value between 0 to 180 
+     myservo.write(angle);
 }

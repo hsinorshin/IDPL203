@@ -16,10 +16,13 @@
 #define US_ECHO_PIN 22
 #define L_MOTOR_PORT 1
 #define R_MOTOR_PORT 3
+#define SERVO_PIN 9
 
 //Other constants
 
 #define BLOCK_ROTATION_ANGLE 0
+int hold=0; //1 if the robot is handling a block
+
 
 
 //FUNCTION PROTOTYPES
@@ -42,7 +45,7 @@ void init_motor_history();
 void setup_motors();
 void setup_servo();
 void set_motor_speeds(int left_motor_speed, int right_motor_speed);
-void set_servo_position();
+void set_servo_position(int angle);
 int get_left_motor_speed();
 int get_right_motor_speed();
 
@@ -50,18 +53,20 @@ int get_right_motor_speed();
 void setup_sensors();
 int get_sensor_reading(int sensor_pin);
 int get_US_reading();
+int get_line_sensor_reading(int sensor_pin);
 
 //led.ino
 void setup_leds();
 void set_led_val(int led_pin, bool val);
-
+void blink(int led_pin, int times);
 
 
 //block.ino
-void find_block(int US_TRIG_PIN, int US_ECHO_PIN);
+void find_block();
 void drop_block();
-int detect_block_colour();
+int grabblock();
 
 //movement.ino
 void turn(int angle);
-void reverse(int )
+void reverse(int distance);
+void stop();
