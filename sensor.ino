@@ -4,6 +4,8 @@
 
 #include "header.h"
 
+
+
 void setup_sensors() {
   pinMode(START_BUTTON_PIN, INPUT);
   pinMode(LINE_SENSOR_1_PIN, INPUT);
@@ -15,5 +17,5 @@ void setup_sensors() {
 }
 
 int get_sensor_reading(int sensor_pin){
-  return digitalRead(sensor_pin);
+  return analogRead(sensor_pin);
 }
