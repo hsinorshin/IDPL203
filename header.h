@@ -15,26 +15,37 @@
 #define US_TRIG_PIN 21
 #define US_ECHO_PIN 22
 #define L_MOTOR_PORT 1
-#define R_MOTOR_PORT 2
+#define R_MOTOR_PORT 3
 
 //Other constants
 
 #define BLOCK_ROTATION_ANGLE 0
+#define MOTOR_SPEED_TURNING_DIFF 20
 
 
 //FUNCTION PROTOTYPES
 
 //test.ino
-void led_connection_test()
-void motor_servo_test()
-void sensor_test()
-void path_test()
+void led_connection_test();
+void motor_servo_test();
+void sensor_test();
+void path_test();
+
+//navigation.ino
+
+void follow_line();
+void recover_to_line();
+void move_onto_line();
+void update_motor_history(int left_val, int right_val, int time);
+void init_motor_history();
 
 //motor.ino
 void setup_motors();
 void setup_servo();
 void set_motor_speeds(int left_motor_speed, int right_motor_speed);
 void set_servo_position();
+int get_left_motor_speed();
+int get_right_motor_speed();
 
 //sensor.ino
 void setup_sensors();
@@ -43,4 +54,6 @@ int get_sensor_reading(int sensor_pin);
 //led.ino
 void setup_leds();
 void set_led_val(int led_pin, bool val);
+
+
 
