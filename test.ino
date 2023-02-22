@@ -33,6 +33,8 @@ void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time **
 
 void motor_servo_test() {
   setup_motors();
+  setup_servo();
+  set_servo_position();
   set_motor_speeds(50,50);
 
 }
@@ -47,6 +49,16 @@ void sensor_test() {
 }
 
 void path_test() {
+  setup_motors();
+  set_motor_speeds(50,50); //go straight 
+  delay(5); //pause
+  set_motor_speeds(0,50); //turn left
+  delay(5);//pause
+  set_motor_speeds(50,0);//right
+  delay(5);
+  set_motor_speeds(-50,-50);//reverse
+  delay(5);
+  set_motor_speeds(0,0); //stop
+}
   
 
-}
