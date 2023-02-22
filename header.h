@@ -17,10 +17,12 @@
 #define L_MOTOR_PORT 1
 #define R_MOTOR_PORT 2
 
+
 //Other constants
 
 #define BLOCK_ROTATION_ANGLE 0
-
+#define hold 0 //boolean for robot holding block
+#define track 0 //boolean for tracking movement 
 
 //FUNCTION PROTOTYPES
 
@@ -39,8 +41,17 @@ void set_servo_position();
 //sensor.ino
 void setup_sensors();
 int get_sensor_reading(int sensor_pin);
+int get_US_reading();
 
 //led.ino
 void setup_leds();
 void set_led_val(int led_pin, bool val);
 
+//block.ino
+void find_block(int US_TRIG_PIN, int US_ECHO_PIN);
+void drop_block();
+int detect_block_colour();
+
+//movement.ino
+void turn(int angle);
+void reverse(int )
