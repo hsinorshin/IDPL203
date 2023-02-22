@@ -6,6 +6,7 @@
 
 void setup() {
     setup_motors();
+    init_motor_history();
     setup_sensors();
     setup_leds();
     led_connection_test();
