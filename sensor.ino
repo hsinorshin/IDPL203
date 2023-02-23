@@ -1,13 +1,13 @@
 /*
     Interfacing with sensors
+    LINE_SENSORS : LED + infrared photodiode , output = 0 / 1 
+    COLOUR_SENSOR : infrared LED + phototransistor , output = 0 / 1
+    US_SENSOR : US emitter + US receiver , output = int distance 
 */
 
 #include "header.h"
 
-/*
-line sensor is LED + infrared photodiode, digital input 
-block colour is infrared LED + phototransistor  digital, high for blue low for anything else 
-*/
+
 
 void setup_sensors() {
   pinMode(START_BUTTON_PIN, INPUT);
@@ -24,51 +24,59 @@ void loop(){
 
 }
 
-int get_US_reading(){
-  //range of US is 2cm - 400cm
-  long duration;
-  int distance;
-
-  //Clears the trigPin 
-  digitalWrite(US_TRIG_PIN,LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(US_TRIG_PIN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(US_TRIG_PIN, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(US_ECHO_PIN, HIGH);
-  // Calculating the distance in cm 
-  distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  return distance
-
-}
 int get_sensor_reading(int sensor_pin){
-  return analogRead(sensor_pin);
-  //switch case for different sensors when we are done writing function for each type of sensor 
-}
 
-int get_line_sensor_reading(int sensor_pin){
-  return digitalRead(sensor_pin)
-}
+  switch(sensor_pin){
+    case START_BUTTON_PIN:
+    //high when pressed (start)
+    return digitalRead(START_BUTTON_PIN);
 
-int get_US_reading(){
-  long duration;
-  int distance;
+    case LINE_SENSOR_1_PIN:
+    //high for black, low for white 
+    return digitalRead(LINE_SENSOR_1_PIN);
 
-  // Clears the trigPin
-  digitalWrite(US_TRIG_PIN, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(US_TRIG_PIN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(US_TRIG_PIN, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(US_ECHO_PIN, HIGH);
-  // Calculating the distance
-  distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  return distance;
-}
+    case LINE_SENSOR_2_PIN:
+    //high for black, low for white 
+    return digitalRead(LINE_SENSOR_2_PIN);
+
+    case LINE_SENSOR_3_PIN:
+    //high for black, low for white 
+    return digitalRead(LINE_SENSOR_3_PIN);
+
+    case LINE_SENSOR_4_PIN:
+    //high for black, low for white 
+    return digitalRead(LINE_SENSOR_4_PIN);
+
+    case COLOUR_SENSOR_PIN:
+    //high for blue, low for anything else(red)
+    return digitalRead(COLOUR_SENSOR_PIN);
+
+    case US_ECHO_PIN:
+    //range of US is 2cm - 400cm
+    long duration;
+    int distance;
+
+    //Clears the trigPin 
+    digitalWrite(US_TRIG_PIN,LOW);
+    delayMicroseconds(2);
+
+    // Sets the trigPin on HIGH state for 10 micro seconds
+    digitalWrite(US_TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(US_TRIG_PIN, LOW);
+
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    duration = pulseIn(US_ECHO_PIN, HIGH);
+
+    // Calculating the distance in cm 
+    distance = duration * 0.034 / 2;
+
+    // Prints the distance on the Serial Monitor
+    return distance; 
+    
+
+  }
+
+  
+
 

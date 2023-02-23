@@ -15,7 +15,7 @@ void setup(){
 void findblock(){
     //this is called because there is a fork detected and hold=0
     turn(BLOCK_ROTATION_ANGLE); //turn to face end of white line/potential object location 
-    distance=get_US_reading();
+    distance=get_sensor_reading(US_ECHO_PIN);
     if (distance>50){
         //there's no block there!
         recover_to_line();
@@ -29,7 +29,7 @@ void findblock(){
         
         while(distance>2){
             follow_line();
-            distance=get_US_reading();
+            distance=get_sensor_reading(US_ECHO_PIN);
             move_onto_line(); //I'm assuming this means we move onto the fork for now 
             follow_line();
         }
@@ -51,7 +51,7 @@ void dropblock(){
     while (fork_count!=block_colour){
         follow_line();
         delay(50); //keep checking every 50ms 
-        if (get_line_sensor_reading(LINE_SENSOR_3_PIN) ^ get_line_sensor_reading(LINE_SENSOR_4_PIN))fork_count++;
+        if (get_sensor_reading(LINE_SENSOR_3_PIN) ^ get_sensor_reading(LINE_SENSOR_4_PIN))fork_count++;
         
     }
     //found correct fork for block,start recording movement 

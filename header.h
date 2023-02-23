@@ -49,8 +49,7 @@ int get_right_motor_speed();
 //sensor.ino
 void setup_sensors();
 int get_sensor_reading(int sensor_pin);
-int get_US_reading();
-int get_line_sensor_reading(int sensor_pin);
+
 
 //led.ino
 void setup_leds();
