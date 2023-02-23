@@ -13,10 +13,10 @@
 #define LINE_SENSOR_4_PIN 11 //Outer right line sensor
 #define L_MOTOR_PORT 1
 #define R_MOTOR_PORT 3
-#define SERVO_PIN 9
+#define SERVO_PIN 24
 
 //Other constants
-
+//all distances in cm and angle in degrees 
 #define BLOCK_ROTATION_ANGLE 0
 int hold=0; //1 if the robot is handling a block
 

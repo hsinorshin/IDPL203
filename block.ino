@@ -8,15 +8,13 @@ int distance;
 int block_colour; 
 int fork_count;
 
-void setup(){
-    
-}
 
 void findblock(){
-    //this is called because there is a fork detected and hold=0
-    turn(BLOCK_ROTATION_ANGLE); //turn to face end of white line/potential object location 
+    //called because there is a fork detected and hold=0
+    reverse(5);
+    turn(BLOCK_ROTATION_ANGLE); //pivot to face end of fork
     distance=get_sensor_reading(US_ECHO_PIN);
-    if (distance>50){
+    if (distance>10){
         //there's no block there!
         recover_to_line();
     }
@@ -74,7 +72,7 @@ void dropblock(){
 void grabblock(){
     //controlling servos/claw position to grab the block 
     //open claw
-    set_servo_position(150);
+    set_servo_position(180);
     delay(50);
     //close claw
     set_servo_position(50);
@@ -83,7 +81,7 @@ void grabblock(){
 
 void releaseblock(){
     //open claw
-    set_servo_position(150);
+    set_servo_position(180);
     delay(50);
     //close claw
     set_servo_position(50);
