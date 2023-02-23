@@ -69,7 +69,7 @@ void move_onto_line() { //For when moving out of start box and on to the line
     const int MAX_TIME_TO_LINE_1 = 5000; //in ms, how long it is expected to take to get to line (maximum, worry if it takes this long!)
     const int MAX_TIME_TO_LINE_2 = 5000;
     const int MAX_COUNT_1 = MAX_TIME_TO_LINE_1 / DELAY;
-    const int MAX_COUNT_1 = MAX_TIME_TO_LINE_1 / DELAY;
+    const int MAX_COUNT_2 = MAX_TIME_TO_LINE_2 / DELAY;
 
     bool line_reached_left = false;
     bool line_reached_right = false;
