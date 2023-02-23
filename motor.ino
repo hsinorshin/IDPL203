@@ -21,23 +21,23 @@ void setup_motors() {
     right_motor_speed = 0;
 }
 
-int set_motor_speeds(int left_val, int right_val) { //Parameters are negative if running in reverse, positive if running forwards
+void set_motor_speeds(int left_val, int right_val) { //Parameters are negative if running in reverse, positive if running forwards
     
     //Set left motor
-    if (left_val >= 0) left_motor->run(FORWARD);
+    if (left_val <= 0) left_motor->run(FORWARD);
     else left_motor->run(BACKWARD);
     left_motor->setSpeed(abs(left_val));
 
     //Set right motor
-    if (left_val >= 0) left_motor->run(FORWARD);
-    else left_motor->run(BACKWARD);
-    left_motor->setSpeed(abs(left_val));
+    if (right_val >= 0) right_motor->run(FORWARD);
+    else right_motor->run(BACKWARD);
+    right_motor->setSpeed(abs(right_val));
 
     left_motor_speed = left_val;
     right_motor_speed = right_val;
-    int update_time = millis();
+    //int update_time = millis();
 
-    update_motor_history(left_motor_speed, right_motor_speed, update_time);
+    //update_motor_history(left_motor_speed, right_motor_speed, update_time);
 }
 
 int get_left_motor_speed() {

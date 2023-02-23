@@ -17,25 +17,19 @@ void follow_line(){
     int right_speed = get_right_motor_speed();
     if (left_sensor_val == 1 && right_sensor_val == 1) {
         //Great, its on the path!
-        int new_speed = (left_speed + right_speed) / 2; //Take average of speeds as new speed (both equal)
-        left_speed = new_speed;
-        right_speed = new_speed;
-    }
-    else if (left_sensor_val == 1 && right_sensor_val == 0) {
-        //Too far to the right, moving left 
-        while (right_speed <= left_speed + MOTOR_SPEED_TURNING_DIFF){ //Adjust so right motor is faster than left motor by value MOTOR_SPEED_TURNING_DIFF
-            right_speed++;
-            left_speed--;
-        }
+        
     }
     else if (left_sensor_val == 0 && right_sensor_val == 1) {
-        //Too far to the left, moving right
-        while (left_speed <= right_speed + MOTOR_SPEED_TURNING_DIFF){ //Adjust so left motor is faster than right motor by value MOTOR_SPEED_TURNING_DIFF
-            left_speed++;
-            right_speed--;
-        }
+        //Too far to the right, moving left 
+        right_speed = MOTOR_SPEED_BASE + MOTOR_SPEED_TURNING_DIFF / 2;
+        left_speed = MOTOR_SPEED_BASE - MOTOR_SPEED_TURNING_DIFF / 2;
     }
-    else if (left_sensor_val == 0 && right_sensor_val == 0) {
+    else if (left_sensor_val == 1 && right_sensor_val == 0) {
+        //Too far to the left, moving right
+        right_speed = MOTOR_SPEED_BASE - MOTOR_SPEED_TURNING_DIFF / 2;
+        left_speed = MOTOR_SPEED_BASE + MOTOR_SPEED_TURNING_DIFF / 2;
+    }
+    else if (left_sensor_val == 1 && right_sensor_val == 1) {
         //Lost track, start reverse sequence
         recover_to_line();
     }
@@ -56,6 +50,4 @@ void init_motor_history() {
 
 void update_motor_history(int left_val, int right_val, int time) {
     rear_history_pointer = (rear_history_pointer + 1) % MS_HISTORY_LENGTH;
-    
-
 }
