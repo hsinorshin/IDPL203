@@ -13,10 +13,11 @@ void setup() {
     //setup_leds();
     //led_connection_test();
     //path_test();
-    set_motor_speeds(255, 255);
+    delay(10000);
+    set_motor_speeds(MOTOR_SPEED_BASE, MOTOR_SPEED_BASE);
 
 }
 
 void loop() {
-  //follow_line();
+  follow_line();
 }

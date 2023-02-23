@@ -20,8 +20,8 @@
 //Other constants
 
 #define BLOCK_ROTATION_ANGLE 45
-#define MOTOR_SPEED_TURNING_DIFF 250
-#define MOTOR_SPEED_BASE 50
+#define MOTOR_SPEED_TURNING_DIFF 20
+#define MOTOR_SPEED_BASE 150
 
 
 //FUNCTION PROTOTYPES
@@ -37,8 +37,6 @@ void path_test();
 void follow_line();
 void recover_to_line();
 void move_onto_line();
-void update_motor_history(int left_val, int right_val, int time);
-void init_motor_history();
 
 //motor.ino
 void setup_motors();
