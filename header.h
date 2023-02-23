@@ -4,16 +4,13 @@
 #define AMBER_INDICATOR_LED_PIN 18
 #define RED_INDICATOR_LED_PIN 19
 #define GREEN_INDICATOR_LED_PIN 20
+#define US_TRIG_PIN 21
+#define US_ECHO_PIN 22
+#define COLOUR_SENSOR_PIN 26
 #define LINE_SENSOR_1_PIN 27 //Inner left line sensor
 #define LINE_SENSOR_2_PIN 28 //Inner right line sensor
 #define LINE_SENSOR_3_PIN 12 //Outer left line sensor
 #define LINE_SENSOR_4_PIN 11 //Outer right line sensor
-#define RED_SENSOR_LED_PIN 23
-#define GREEN_SENSOR_LED_PIN 24
-#define BLUE_SENSOR_LED_PIN 25
-#define COLOUR_SENSOR_PIN 26
-#define US_TRIG_PIN 21
-#define US_ECHO_PIN 22
 #define L_MOTOR_PORT 1
 #define R_MOTOR_PORT 3
 #define SERVO_PIN 9

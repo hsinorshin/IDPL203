@@ -4,7 +4,10 @@
 
 #include "header.h"
 
-
+/*
+line sensor is LED + infrared photodiode, digital input 
+block colour is infrared LED + phototransistor  digital, high for blue low for anything else 
+*/
 
 void setup_sensors() {
   pinMode(START_BUTTON_PIN, INPUT);

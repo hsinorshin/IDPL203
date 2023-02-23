@@ -14,7 +14,7 @@ void setup(){
 
 void findblock(){
     //this is called because there is a fork detected and hold=0
-    turn(45); //turn to face end of white line/potential object location 
+    turn(BLOCK_ROTATION_ANGLE); //turn to face end of white line/potential object location 
     distance=get_US_reading();
     if (distance>50){
         //there's no block there!
@@ -24,8 +24,9 @@ void findblock(){
     else if(distance<=50){
         //there is a block!
         //start recording movement 
-        init_motor_history();
+        init_motor_history(); //
         update_motor_history();
+        
         while(distance>2){
             follow_line();
             distance=get_US_reading();
@@ -38,7 +39,7 @@ void findblock(){
         block_colour=get_sensor_reading(COLOUR_SENSOR_PIN); //need to convert analogue reading to int 
         blink(block_colour,5);
         grabblock();
-        recover_to_line();
+        recover_to_line(); //change to reverse_movement 
         hold=1;
 
     }
