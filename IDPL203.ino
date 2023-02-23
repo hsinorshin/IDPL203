@@ -19,5 +19,8 @@ void setup() {
 }
 
 void loop() {
-  follow_line();
+    //pseudocode to test out block finding
+    //there are only three reasons why we would get values for L3,L4, 1. no block trying to get block 2. w block trying to drop block 3.leaving starting area 
+    /*move-> path detected -> if hold=0 -> find block-> detect block colour-> get block -> */
+  
 }
