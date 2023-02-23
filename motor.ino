@@ -24,20 +24,10 @@ void setup_motors() {
     
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 void set_motor_speeds(int left_val, int right_val) { //Parameters are negative if running in reverse, positive if running forwards
-    
-=======
-int set_motor_speeds(int left_val, int right_val) { //Parameters are negative if running in reverse, positive if running forwards
     // The speed parameter is a value between 0 and 255.
     //Note that setSpeed just controls the power delivered to the motor. The actual speed of the motor will depend on several factors, including: The motor, the power supply and the load.
->>>>>>> master
-=======
-int set_motor_speeds(int left_val, int right_val) { //Parameters are negative if running in reverse, positive if running forwards
-    // The speed parameter is a value between 0 and 255.
-    //Note that setSpeed just controls the power delivered to the motor. The actual speed of the motor will depend on several factors, including: The motor, the power supply and the load.
->>>>>>> 25a278a05b7e9b7d7618926722e2b26c164bf4ae
     //Set left motor
     if (left_val <= 0) left_motor->run(FORWARD);
     else left_motor->run(BACKWARD);
@@ -64,7 +54,7 @@ int get_right_motor_speed() {
 }
 
 void setup_servo(){
-    myservo.attach(SERVO_PIN)
+    myservo.attach(SERVO_PIN);
 }
 
 void set_servo_position(int angle){

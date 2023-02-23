@@ -20,10 +20,6 @@ void setup_sensors() {
   pinMode(US_TRIG_PIN, OUTPUT);
 }
 
-void loop(){
-
-}
-
 int get_sensor_reading(int sensor_pin){
 
   switch(sensor_pin){
@@ -76,7 +72,7 @@ int get_sensor_reading(int sensor_pin){
     
 
   }
-
+}
   
 
 

@@ -22,8 +22,8 @@ void findblock(){
     else if(distance<=50){
         //there is a block!
         //start recording movement 
-        init_motor_history(); //
-        update_motor_history();
+        //init_motor_history(); //
+        //update_motor_history();
         
         while(distance>2){
             follow_line();
@@ -53,8 +53,8 @@ void dropblock(){
         
     }
     //found correct fork for block,start recording movement 
-        init_motor_history();
-        update_motor_history();
+        //init_motor_history();
+        //update_motor_history();
         turn(90);
         move_onto_line(); //I'm assuming this means we move onto the fork for now 
         follow_line();

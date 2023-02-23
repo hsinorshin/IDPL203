@@ -4,6 +4,8 @@
 
 #include "header.h"
 
+
+
 void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time **Idt u need void in front when u call the cmd 
   set_led_val(RED_INDICATOR_LED_PIN, true);
   delay(500);
@@ -14,21 +16,12 @@ void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time **
   set_led_val(AMBER_INDICATOR_LED_PIN, true);
   delay(500);
   set_led_val(AMBER_INDICATOR_LED_PIN, false);
-  set_led_val(RED_SENSOR_LED_PIN, true);
-  delay(500);
-  set_led_val(RED_SENSOR_LED_PIN, false);
-  set_led_val(GREEN_SENSOR_LED_PIN, true);
-  delay(500);
-  set_led_val(GREEN_SENSOR_LED_PIN, false);
-  set_led_val(BLUE_SENSOR_LED_PIN, true);
-  delay(500);
-  set_led_val(BLUE_SENSOR_LED_PIN, false);
 }
 
 void motor_servo_test() {
   setup_motors();
   setup_servo();
-  set_servo_position();
+  set_servo_position(20);
   set_motor_speeds(50,50);
 
 }
@@ -45,20 +38,20 @@ void sensor_test() {
 void path_test() 
 {
   Serial.print("Starting path test");
-  set_motor_speeds(200,200); //go straight 
+  set_motor_speeds(MOTOR_SPEED_BASE,MOTOR_SPEED_BASE); //go straight 
   delay(4000); //pause
   Serial.print("Turning left");
-  set_motor_speeds(0,200); //turn left
+  set_motor_speeds(0,MOTOR_SPEED_BASE); //turn left
   delay(1000);//pause
   Serial.print("Turning right");
-  set_motor_speeds(200,0);//right
+  set_motor_speeds(MOTOR_SPEED_BASE,0);//right
   delay(1000);
   Serial.print("Reversing");
-  set_motor_speeds(-200,-200);//reverse
+  set_motor_speeds(-MOTOR_SPEED_BASE,-MOTOR_SPEED_BASE);//reverse
   delay(1000);
   Serial.print("Left");
   set_motor_speeds(0,0); //stop
   Serial.print("Path test ended");
 }
-  
+
 

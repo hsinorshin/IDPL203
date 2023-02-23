@@ -1,9 +1,9 @@
 #include "header.h" 
-#include <map>
+//#include <map>
 
 int time;
 int k=1; //this needs to be calibrated 
-int wheel_ang_vel= k*150; 
+int wheel_ang_vel= k*MOTOR_BASE_SPEED; 
 
 void turn(int angle){
 //anticlockwise as convention, axle as pivot, width/2 of chassis as radius 
@@ -15,13 +15,13 @@ void turn(int angle){
     
 if (angle>=0){
    
-   set_motor_speeds(-150,150); 
+   set_motor_speeds(-MOTOR_SPEED_BASE,MOTOR_SPEED_BASE); 
    delay(time); 
    set_motor_speeds(0,0);
 }
 
 else if (angle<0){
-    set_motor_speeds(150,-150);
+    set_motor_speeds(MOTOR_SPEED_BASE, -MOTOR_SPEED_BASE);
     delay(time);
     set_motor_speeds(0,0);
 }

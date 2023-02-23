@@ -8,9 +8,6 @@ void setup_leds() {
     pinMode(RED_INDICATOR_LED_PIN, OUTPUT);
     pinMode(GREEN_INDICATOR_LED_PIN, OUTPUT);
     pinMode(AMBER_INDICATOR_LED_PIN, OUTPUT);
-    pinMode(GREEN_SENSOR_LED_PIN, OUTPUT);
-    pinMode(RED_SENSOR_LED_PIN, OUTPUT);
-    pinMode(BLUE_SENSOR_LED_PIN, OUTPUT);
 }
 
 void set_led_val(int led_pin, bool val) {
