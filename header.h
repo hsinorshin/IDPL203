@@ -21,6 +21,7 @@
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BLOCK_ROTATION_ANGLE 45
 #define MOTOR_SPEED_TURNING_DIFF 20
 #define MOTOR_SPEED_BASE 150
@@ -30,6 +31,11 @@
 int hold=0; //1 if the robot is handling a block
 
 >>>>>>> master
+=======
+#define BLOCK_ROTATION_ANGLE 45
+#define MOTOR_SPEED_TURNING_DIFF 20
+#define MOTOR_SPEED_BASE 150
+>>>>>>> 25a278a05b7e9b7d7618926722e2b26c164bf4ae
 
 
 //FUNCTION PROTOTYPES
