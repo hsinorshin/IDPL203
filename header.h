@@ -17,6 +17,7 @@
 
 //Other constants
 //all distances in cm and angle in degrees 
+#define WHEELBASE 10
 #define BLOCK_ROTATION_ANGLE 45
 #define MOTOR_SPEED_TURNING_DIFF 20
 #define MOTOR_SPEED_BASE 230
@@ -65,4 +66,5 @@ void grabblock();
 //movement.ino
 void turn(int angle);
 void reverse(int distance);
+void forward(int distance);
 void stop(); 
