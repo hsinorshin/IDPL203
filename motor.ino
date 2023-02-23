@@ -59,5 +59,5 @@ void setup_servo(){
 
 void set_servo_position(int angle){
     //degree should be a value between 0 to 180 
-     myservo.write(angle);
+    myservo.write(angle);
 }
