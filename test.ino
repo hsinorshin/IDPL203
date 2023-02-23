@@ -4,31 +4,25 @@
 
 #include "header.h"
 
-// the setup routine runs once when you press reset:
-void setup() {
-  // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
-}
-
 void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time **Idt u need void in front when u call the cmd 
-  void set_led_val(RED_INDICATOR_LED_PIN, true);
+  set_led_val(RED_INDICATOR_LED_PIN, true);
   delay(500);
-  void set_led_val(RED_INDICATOR_LED_PIN, false);
-  void set_led_val(GREEN_INDICATOR_LED_PIN, true);
+  set_led_val(RED_INDICATOR_LED_PIN, false);
+  set_led_val(GREEN_INDICATOR_LED_PIN, true);
   delay(500);
-  void set_led_val(GREEN_INDICATOR_LED_PIN, false);
-  void set_led_val(AMBER_INDICATOR_LED_PIN, true);
+  set_led_val(GREEN_INDICATOR_LED_PIN, false);
+  set_led_val(AMBER_INDICATOR_LED_PIN, true);
   delay(500);
-  void set_led_val(AMBER_INDICATOR_LED_PIN, false);
-  void set_led_val(RED_SENSOR_LED_PIN, true);
+  set_led_val(AMBER_INDICATOR_LED_PIN, false);
+  set_led_val(RED_SENSOR_LED_PIN, true);
   delay(500);
-  void set_led_val(RED_SENSOR_LED_PIN, false);
-  void set_led_val(GREEN_SENSOR_LED_PIN, true);
+  set_led_val(RED_SENSOR_LED_PIN, false);
+  set_led_val(GREEN_SENSOR_LED_PIN, true);
   delay(500);
-  void set_led_val(GREEN_SENSOR_LED_PIN, false);
-  void set_led_val(AMBER_SENSOR_LED_PIN, true);
+  set_led_val(GREEN_SENSOR_LED_PIN, false);
+  set_led_val(BLUE_SENSOR_LED_PIN, true);
   delay(500);
-  void set_led_val(AMBER_SENSOR_LED_PIN, false);
+  set_led_val(BLUE_SENSOR_LED_PIN, false);
 }
 
 void motor_servo_test() {
@@ -48,17 +42,23 @@ void sensor_test() {
   delay(1); //delay in between reads for stability 
 }
 
-void path_test() {
-  setup_motors();
-  set_motor_speeds(50,50); //go straight 
-  delay(5); //pause
-  set_motor_speeds(0,50); //turn left
-  delay(5);//pause
-  set_motor_speeds(50,0);//right
-  delay(5);
-  set_motor_speeds(-50,-50);//reverse
-  delay(5);
+void path_test() 
+{
+  Serial.print("Starting path test");
+  set_motor_speeds(200,200); //go straight 
+  delay(4000); //pause
+  Serial.print("Turning left");
+  set_motor_speeds(0,200); //turn left
+  delay(1000);//pause
+  Serial.print("Turning right");
+  set_motor_speeds(200,0);//right
+  delay(1000);
+  Serial.print("Reversing");
+  set_motor_speeds(-200,-200);//reverse
+  delay(1000);
+  Serial.print("Left");
   set_motor_speeds(0,0); //stop
+  Serial.print("Path test ended");
 }
   
 
