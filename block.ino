@@ -39,7 +39,6 @@ void find_block(){
             }
         }
     }
-
     
 }
 

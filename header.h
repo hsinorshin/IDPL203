@@ -16,7 +16,7 @@
 #define SERVO_PIN 9
 
 //Other constants
-//all distances in cm and angle in degrees 
+//all distances in cm, angle in degrees, time in seconds
 #define WHEELBASE 10
 #define BLOCK_ROTATION_ANGLE 45
 #define MOTOR_SPEED_TURNING_DIFF 20
@@ -26,6 +26,10 @@
 #define BLUE 1
 #define HOME 2
 #define RED 3
+#define MATCH_TIME 300
+#define LAP_TIME 60
+extern double time_left;
+extern int start;
 extern int hold; //1 if the robot is handling a block
 extern int fork_count;
 
@@ -42,6 +46,7 @@ void path_test();
 void follow_line();
 void recover_to_line();
 void move_onto_line();
+void go_back();
 
 //motor.ino
 void setup_motors();

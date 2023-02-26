@@ -6,7 +6,7 @@
 
 
 
-void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time **Idt u need void in front when u call the cmd 
+void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time 
   set_led_val(RED_INDICATOR_LED_PIN, true);
   delay(500);
   set_led_val(RED_INDICATOR_LED_PIN, false);

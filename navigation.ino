@@ -117,5 +117,30 @@ void move_onto_line() { //For when moving out of start box and on to the line
     }
     //Main line reached, turn right on to line
     forward(WHEELBASE); //Move forward wheelbase of car (rear axle now over line)
-    turn(-90); //Pivot round to face lin
+    turn(-90); //Pivot round to face line
+}
+
+void go_back(){
+    //to return to home
+    //we are either at fork w green/red box after dropping off block
+    if (fork_count<HOME){
+        follow_line();
+        if (get_sensor_reading(LINE_SENSOR_3_PIN) ^ get_sensor_reading(LINE_SENSOR_4_PIN)){
+            turn(-BLOCK_ROTATION_ANGLE);
+            //some algo to make robot get in the white square 
+            }
+        
+    }
+
+    else if(fork_count>HOME){
+        reverse(FORK_DISTANCE);
+         if (get_sensor_reading(LINE_SENSOR_3_PIN) ^ get_sensor_reading(LINE_SENSOR_4_PIN)){
+            turn(-BLOCK_ROTATION_ANGLE);
+            //some algo to make robot get in the white square 
+            }
+        
+    }
+    
+        
+        
 }
