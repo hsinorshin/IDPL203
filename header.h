@@ -22,11 +22,12 @@
 #define MOTOR_SPEED_TURNING_DIFF 20
 #define MOTOR_SPEED_BASE 230
 #define GRABBER_BLOCK_DIST 1
+#define FORK_DISTANCE 50
 #define BLUE 1
 #define HOME 2
 #define RED 3
 extern int hold; //1 if the robot is handling a block
-
+extern int fork_count;
 
 //FUNCTION PROTOTYPES
 
