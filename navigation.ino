@@ -10,11 +10,12 @@ void follow_line(){
     int right_sensor_val = get_sensor_reading(LINE_SENSOR_2_PIN);
     int left_speed = get_left_motor_speed();
     int right_speed = get_right_motor_speed();    
-    Serial.print(left_sensor_val);
+    Serial.println(left_sensor_val);
     Serial.println(right_sensor_val);
     if (left_sensor_val == 1 && right_sensor_val == 1) {
         right_speed = MOTOR_SPEED_BASE;
         left_speed = MOTOR_SPEED_BASE;
+        //hsin: i recommend we find a way to avoid sending the instruction set_motor_speeds if we are on track to avoid overcrowding the communication channel/sending too many instructions 
     }
     else if (left_sensor_val == 1 && right_sensor_val == 0) {
         //Too far to the right, moving left 

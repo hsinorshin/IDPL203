@@ -21,6 +21,10 @@
 #define BLOCK_ROTATION_ANGLE 45
 #define MOTOR_SPEED_TURNING_DIFF 20
 #define MOTOR_SPEED_BASE 230
+#define GRABBER_BLOCK_DIST 1
+#define BLUE 1
+#define HOME 2
+#define RED 3
 extern int hold; //1 if the robot is handling a block
 
 
@@ -61,7 +65,8 @@ void blink(int led_pin, int times);
 //block.ino
 void find_block();
 void drop_block();
-void grabblock();
+void grab_block();
+void release_block();
 
 //movement.ino
 void turn(int angle);
