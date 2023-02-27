@@ -15,6 +15,7 @@ void setup() {
     //setup_sensors();
     //setup_leds();
     //led_connection_test();
+    motor_servo_test();
     path_test();
     delay(10000);
     set_motor_speeds(MOTOR_SPEED_BASE, MOTOR_SPEED_BASE);
@@ -36,11 +37,13 @@ void loop() {
     setup_servo();
 
     //START
-    while(true){
+    bool started = false;
+    while(!started){
         start=get_sensor_reading(START_BUTTON_PIN);
         if (start==1){
             time_left=MATCH_TIME;
             move_onto_line(); //move from home onto track
+            started = true;
             break;
         }
         else{
@@ -52,7 +55,7 @@ void loop() {
     while(time_left>LAP_TIME){
         
         find_block(); //attempt to find block
-        if ((hold==0) && fork_count==2){
+        if ((hold==0) && fork_count==2){ //If block not found, try to find block at next left fork
             fork_count--;
             find_block();
         }

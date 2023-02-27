@@ -17,11 +17,16 @@
 
 //Other constants
 //all distances in cm, angle in degrees, time in seconds
+#define DELAY 50 //in ms, how long to wait between iterations
 #define WHEELBASE 10
 #define BLOCK_ROTATION_ANGLE 45
 #define MOTOR_SPEED_TURNING_DIFF 20
 #define MOTOR_SPEED_BASE 230
 #define GRABBER_BLOCK_DIST 1
+#define OPEN_CLAW_POSITION 180
+#define CLOSE_CLAW_POSITION 0
+#define DETECTION_CLAW_POSITION 10
+#define SERVO_GEAR_RATIO 1.5
 #define FORK_DISTANCE 50
 #define BLUE 1
 #define HOME 2

@@ -21,8 +21,14 @@ void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time
 void motor_servo_test() {
   setup_motors();
   setup_servo();
-  set_servo_position(20);
+  set_servo_position(OPEN_CLAW_POSITION*SERVO_GEAR_RATIO);
+  delay(3000);
+  set_servo_position(CLOSE_CLAW_POSITION*SERVO_GEAR_RATIO);
+  delay(3000);
+  set_servo_position(DETECTION_CLAW_POSITION*SERVO_GEAR_RATIO);
+  delay(3000);
   set_motor_speeds(50,50);
+  delay(3000);
 
 }
 
@@ -35,22 +41,21 @@ void sensor_test() {
   delay(1); //delay in between reads for stability 
 }
 
-void path_test() 
+void path_test() //Path test for testing basic movement functions of the robot, examined by eye
 {
-  Serial.print("Starting path test");
-  set_motor_speeds(MOTOR_SPEED_BASE,MOTOR_SPEED_BASE); //go straight 
-  delay(4000); //pause
-  Serial.print("Turning left");
-  set_motor_speeds(0,MOTOR_SPEED_BASE); //turn left
-  delay(1000);//pause
-  Serial.print("Turning right");
-  set_motor_speeds(MOTOR_SPEED_BASE,0);//right
-  delay(1000);
-  Serial.print("Reversing");
-  set_motor_speeds(-MOTOR_SPEED_BASE,-MOTOR_SPEED_BASE);//reverse
-  delay(1000);
-  Serial.print("Left");
-  set_motor_speeds(0,0); //stop
+  Serial.println("Starting path test");
+  Serial.println("Move forward 20cm");
+  forward(50);
+  Serial.println("Move backward 100cm");
+  reverse(50);
+  Serial.println("Turning left");
+  turn(-90);
+  turn(90);
+  Serial.println("Turning right");
+  turn(90);
+  turn(-90);
+  Serial.println("Stopping");
+  stop();
   Serial.print("Path test ended");
 }
 
