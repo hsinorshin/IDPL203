@@ -24,6 +24,7 @@ merge pull request -> confirm merge
 
 
 (on branch development)$ git merge master
+git push 
 (resolve any merge conflicts if there are any)
 git checkout master
 git merge development (there won't be any conflicts now)
@@ -34,3 +35,63 @@ git branch -d localBranchName
 
 // delete branch remotely
 git push origin --delete remoteBranchName
+
+//to check changes in a file 
+git diff <filename>
+
+//add part of a file
+git add -p <filename>
+
+//cloning a remote repo
+git clone <url>
+
+Rules of Version Control
+1. Combine changes from the same topic in a single commit [git add <file>, git add -p <file>]
+2. Commit message - subject (concise summary) + body (more detailed explanation: difference, reason, remarks)
+3. A written convection for branching workflow w/ Team
+
+Two strats of different extremes :
+- Mainline Development ("Always be intergrating")
+	- few branches, relatively small commits, high-quality testing and QA standards
+- State, Release, and Feature Branches 
+	- different type of branches, fulfill different types of jobs 
+
+Long-running & short-lived branches 
+- LR 
+	- exist through complete lifetime of project (eg. main/master)
+	- integration branch (represent states in project release/deployment process)
+	- typically no direct commits, usually through integration(merging) 
+	- you shouldn't add untested, unreviewed code to your production environment 
+-SL 
+	- for certain purposes and deleted after integrated 
+	- eg. new feature, experiment, bug-fix 
+	- usually based on a LR branch 
+
+Branching Strategy (2 exp)
+- GitHub Flow 
+	- simple, very lean, only one LR branch (main) + feature branches 
+
+-GitFlow 
+	-more structure, more rules
+	- LR 'main' + 'develop'
+
+Pull Requests
+Invites reviewers to provide feedback before merging 
+They might then approve it and merge it into another branch 
+Contributing Code to other Repos: You can create a 'Fork' of the original repo, where you can make changes, open a pull requests 
+to include those changes in the ori repo 
+Pull requests are based on branches and not individual commits 
+
+Merge Conflicts 
+Can occur when integrating commits from different sources eg. git merge, git rebase, git pull, git cherry-pick, git stash apply 
+Can undo conflict and startover by aborting 
+
+Merge vs Rebase 
+In rebase, commit get a new parents, we get a different commit history 
+Rebasing on a branch/commit is not a problem if the commit hasn't been pushed yet, but if it has... it may be a problem 
+DO NOT use rebase on commits that you've already pushed/shared on a remote repo 
+Instead, use it for cleaning up your local commit history before mergin it into a shared team branch 
+It makes the commit history appear like a straight line 
+
+
+
