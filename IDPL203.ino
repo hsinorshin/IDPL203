@@ -31,6 +31,7 @@ void loop() {
     /*move-> path detected -> if hold=0 -> find block-> detect block colour-> get block -> */
 
     //hardware initialisation
+    /
     setup_motors();
     setup_leds();
     setup_sensors();
