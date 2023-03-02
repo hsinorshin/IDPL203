@@ -61,4 +61,14 @@ void path_test() //Path test for testing basic movement functions of the robot, 
   Serial.print("Path test ended");
 }
 
+void block_handling_test(){
+  Serial.println("Start block handling test");
+  Serial.println("Grab the block");
+  grab_block();
+  Serial.println("Release the block");
+  release_block();
+  Serial.println("test ended");
+  
+}
+
 
