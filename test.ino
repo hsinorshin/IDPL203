@@ -44,16 +44,18 @@ void sensor_test() {
 void path_test() //Path test for testing basic movement functions of the robot, examined by eye
 {
   Serial.println("Starting path test");
-  Serial.println("Move forward 20cm");
-  forward(50);
-  Serial.println("Move backward 100cm");
-  reverse(50);
+  Serial.println("Move forward 80cm");
+  //forward(80);
+  Serial.println("Move backward 800cm");
+  //reverse(80);
   Serial.println("Turning left");
-  turn(-90);
   turn(90);
+  turn(-90);
+  /*
   Serial.println("Turning right");
-  turn(90);
   turn(-90);
+  turn(90);
+  */
   Serial.println("Stopping");
   stop();
   Serial.print("Path test ended");

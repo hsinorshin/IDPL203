@@ -9,7 +9,8 @@ int block_colour;
 
 
 void find_block(){
-    const int BLOCK_THRESHOLD = 10;
+    const int BLOCK_THRESHOLD_DETECT = 10;
+    const int BLOCK_THRESHOLD_COLLECT = 10;
     //called when hold=0
     fork_count=0;
     //while(fork_count<2) works for now... but is there a way to make it more general(?)
@@ -21,19 +22,23 @@ void find_block(){
             reverse(5);
             turn(BLOCK_ROTATION_ANGLE); //pivot to face end of fork
             distance=get_sensor_reading(US_ECHO_PIN);
-            if (distance>BLOCK_THRESHOLD){
+            if (distance>BLOCK_THRESHOLD_DETECT){
                 //there's no block there!
                 turn(-BLOCK_ROTATION_ANGLE);
                 continue;
             }
     
-            else if(distance<=BLOCK_THRESHOLD){
+            else if(distance<=BLOCK_THRESHOLD_DETECT){
                 //there is a block!
                 //get block colour 
                 set_servo_position(DETECTION_CLAW_POSITION*SERVO_GEAR_RATIO); //Set claw to be in position to detect block
                 int block_colour=get_sensor_reading(COLOUR_SENSOR_PIN); //need to convert analogue reading to int 
                 blink(block_colour,5);
-                forward(1); //Forward 1cm to collect block
+                while(distance>=BLOCK_THRESHOLD_COLLECT) { //Move forward slightly to grab block
+                    set_motor_speeds(MOTOR_SPEED_BASE/5, MOTOR_SPEED_BASE/5);
+                    distance = get_sensor_reading(US_ECHO_PIN);
+                    delay(DELAY);
+                }
                 set_servo_position(CLOSE_CLAW_POSITION*SERVO_GEAR_RATIO);
                 grab_block();
                 turn(-BLOCK_ROTATION_ANGLE); 
@@ -71,7 +76,7 @@ void grab_block(){
     set_servo_position(OPEN_CLAW_POSITION*SERVO_GEAR_RATIO);
     delay(DELAY);
     //close claw
-    set_servo_position(CLOSE_CLAW_POSTIION*SERVO_GEAR_RATIO);
+    set_servo_position(CLOSE_CLAW_POSITION*SERVO_GEAR_RATIO);
 
 }
 

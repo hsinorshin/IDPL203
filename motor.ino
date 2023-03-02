@@ -21,7 +21,6 @@ void setup_motors() {
     AFMS.begin();
     left_motor_speed = 0;
     right_motor_speed = 0;
-    
 }
 
 
@@ -29,20 +28,18 @@ void set_motor_speeds(int left_val, int right_val) { //Parameters are negative i
     // The speed parameter is a value between 0 and 255.
     //Note that setSpeed just controls the power delivered to the motor. The actual speed of the motor will depend on several factors, including: The motor, the power supply and the load.
     //Set left motor
-    if (left_val <= 0) left_motor->run(FORWARD);
-    else left_motor->run(BACKWARD);
+    if (left_val <= 0) left_motor->run(BACKWARD);
+    else left_motor->run(FORWARD);
     left_motor->setSpeed(abs(left_val));
 
     //Set right motor
-    if (right_val >= 0) right_motor->run(FORWARD);
-    else right_motor->run(BACKWARD);
+    if (right_val >= 0) right_motor->run(BACKWARD);
+    else right_motor->run(FORWARD);
     right_motor->setSpeed(abs(right_val));
 
     left_motor_speed = left_val;
     right_motor_speed = right_val;
-    //int update_time = millis();
-
-    //update_motor_history(left_motor_speed, right_motor_speed, update_time);
+    
 }
 
 int get_left_motor_speed() {
