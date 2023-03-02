@@ -7,8 +7,6 @@
 
 #include "header.h"
 
-
-
 void setup_sensors() {
   pinMode(START_BUTTON_PIN, INPUT);
   pinMode(LINE_SENSOR_1_PIN, INPUT);
@@ -45,7 +43,14 @@ int get_sensor_reading(int sensor_pin){
 
     case COLOUR_SENSOR_PIN:
     //high for blue, low for anything else(red)
-    return digitalRead(COLOUR_SENSOR_PIN);
+    int state=digitalRead(COLOUR_SENSOR_PIN);
+    if (state==1){
+      return BLUE;
+    }
+    else{
+      return RED;
+    }
+     
 
     case US_ECHO_PIN:
     //range of US is 2cm - 400cm
