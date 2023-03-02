@@ -71,7 +71,7 @@ void grab_block(){
     set_servo_position(OPEN_CLAW_POSITION*SERVO_GEAR_RATIO);
     delay(DELAY);
     //close claw
-    set_servo_position(CLOSE_CLAW_POSTIION*SERVO_GEAR_RATIO);
+    set_servo_position(CLOSE_CLAW_POSITION*SERVO_GEAR_RATIO);
 
 }
 
