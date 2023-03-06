@@ -48,6 +48,7 @@ void led_connection_test();
 void motor_servo_test();
 void sensor_test();
 void path_test();
+void block_handling_test();
 
 //navigation.ino
 
