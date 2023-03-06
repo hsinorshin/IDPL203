@@ -1,13 +1,13 @@
 //Arduino pin constants
 
 #define START_BUTTON_PIN 2
-#define AMBER_INDICATOR_LED_PIN 3
-#define RED_INDICATOR_LED_PIN 4
-#define GREEN_INDICATOR_LED_PIN 5
-#define LINE_SENSOR_1_PIN A2 //Inner left line sensor
-#define LINE_SENSOR_2_PIN A3 //Inner right line sensor
-#define LINE_SENSOR_3_PIN 12 //Outer left line sensor
-#define LINE_SENSOR_4_PIN 13 //Outer right line sensor
+#define RED_INDICATOR_LED_PIN 5
+#define GREEN_INDICATOR_LED_PIN 4
+#define AMBER_INDICATOR_LED_PIN 3 
+#define LINE_SENSOR_1_PIN 13 //Inner left line sensor
+#define LINE_SENSOR_2_PIN 12 //Inner right line sensor
+#define LINE_SENSOR_3_PIN A3//Outer left line sensor
+#define LINE_SENSOR_4_PIN A2 //Outer right line sensor
 #define COLOUR_SENSOR_PIN 11
 #define US_TRIG_PIN 6
 #define US_ECHO_PIN 7
@@ -18,7 +18,7 @@
 //Other constants
 //all distances in cm, angle in degrees, time in seconds
 #define DELAY 50 //in ms, how long to wait between iterations
-#define WHEELBASE 12.5
+#define WHEELBASE 13
 #define BLOCK_ROTATION_ANGLE 45
 #define MOTOR_SPEED_TURNING_DIFF 150
 #define MOTOR_SPEED_BASE 255

@@ -8,6 +8,7 @@ void setup_leds() {
     pinMode(RED_INDICATOR_LED_PIN, OUTPUT);
     pinMode(GREEN_INDICATOR_LED_PIN, OUTPUT);
     pinMode(AMBER_INDICATOR_LED_PIN, OUTPUT);
+    set_led_val(AMBER_INDICATOR_LED_PIN, false); //Should start low as not moving
 }
 
 void set_led_val(int led_pin, bool val) {
