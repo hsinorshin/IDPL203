@@ -6,6 +6,7 @@
 
 int distance;
 int block_colour; 
+int fork_count;
 
 
 void find_block(){
@@ -15,19 +16,23 @@ void find_block(){
     fork_count=0;
     //while(fork_count<2) works for now... but is there a way to make it more general(?)
     while(fork_count<2){
-        delay(50);
+        delay(DELAY);
         follow_line();
-        if (get_sensor_reading(LINE_SENSOR_3_PIN)==1 && get_sensor_reading(LINE_SENSOR_4_PIN)==0){
+        if (get_sensor_reading(LINE_SENSOR_3_PIN)==0 && get_sensor_reading(LINE_SENSOR_4_PIN)==1){
             fork_count++;
-            reverse(5);
+            stop();
+            delay(5000);
+            forward(5);
+            /*reverse(5);
             turn(BLOCK_ROTATION_ANGLE); //pivot to face end of fork
             distance=get_sensor_reading(US_ECHO_PIN);
             if (distance>BLOCK_THRESHOLD_DETECT){
                 //there's no block there!
                 turn(-BLOCK_ROTATION_ANGLE);
                 continue;
+            */
             }
-    
+    /*
             else if(distance<=BLOCK_THRESHOLD_DETECT){
                 //there is a block!
                 //get block colour 
@@ -46,26 +51,35 @@ void find_block(){
                 break;
                 
             }
+            */
         }
     }
-    
-}
+
 
 void drop_block(){
     //called when hold=1 
     fork_count=0;
-    while (fork_count!=block_colour){
-        delay(50);
+    //while (fork_count!=block_colour){
+    while (fork_count<3) {
+        delay(DELAY);
         follow_line();
-        if (get_sensor_reading(LINE_SENSOR_3_PIN)==0 && get_sensor_reading(LINE_SENSOR_4_PIN)==1)fork_count++;
+        if (get_sensor_reading(LINE_SENSOR_3_PIN)==1 && get_sensor_reading(LINE_SENSOR_4_PIN)==0) {
+            fork_count++;
+            stop();
+            delay(5000);
+            forward(5);
+        }
+
         
     }
+    /*
     //found correct fork for block
         turn(-BLOCK_ROTATION_ANGLE);
         release_block();
         turn(BLOCK_ROTATION_ANGLE);
         follow_line();
-        hold=0;    
+        hold=0;   
+    */ 
    
 }
 

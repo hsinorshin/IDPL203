@@ -8,13 +8,13 @@
 
 void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time 
   set_led_val(RED_INDICATOR_LED_PIN, true);
-  delay(500);
+  delay(5000);
   set_led_val(RED_INDICATOR_LED_PIN, false);
   set_led_val(GREEN_INDICATOR_LED_PIN, true);
-  delay(500);
+  delay(5000);
   set_led_val(GREEN_INDICATOR_LED_PIN, false);
   set_led_val(AMBER_INDICATOR_LED_PIN, true);
-  delay(500);
+  delay(5000);
   set_led_val(AMBER_INDICATOR_LED_PIN, false);
 }
 
@@ -45,12 +45,16 @@ void path_test() //Path test for testing basic movement functions of the robot, 
 {
   Serial.println("Starting path test");
   Serial.println("Move forward 80cm");
-  //forward(80);
+  forward(70);
+  delay(3000);
   Serial.println("Move backward 800cm");
-  //reverse(80);
+  reverse(70);
+  delay(3000);
   Serial.println("Turning left");
-  turn(90);
-  turn(-90);
+  turn(90, false);
+  delay(3000);
+  turn(-90, false);
+  delay(3000);
   /*
   Serial.println("Turning right");
   turn(-90);
@@ -59,6 +63,15 @@ void path_test() //Path test for testing basic movement functions of the robot, 
   Serial.println("Stopping");
   stop();
   Serial.print("Path test ended");
+}
+
+void block_handling_test() {
+  Serial.println("Start block handling test");
+  Serial.println("Grab the block");
+  grab_block();
+  Serial.println("Release the block");
+  release_block();
+  Serial.println("test ended");
 }
 
 

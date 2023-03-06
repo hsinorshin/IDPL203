@@ -39,6 +39,10 @@ void set_motor_speeds(int left_val, int right_val) { //Parameters are negative i
 
     left_motor_speed = left_val;
     right_motor_speed = right_val;
+
+    //Set amber LED based on whether moving or not
+    if(left_motor_speed == 0 && right_motor_speed == 0) set_led_val(AMBER_INDICATOR_LED_PIN, false);
+    else set_led_val(AMBER_INDICATOR_LED_PIN, true);
     
 }
 

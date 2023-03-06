@@ -13,26 +13,46 @@ void setup() {
     Serial.begin(9600);
     Serial.print("Hello!");
     setup_motors();
-    //setup_sensors();
-    //setup_leds();
+    setup_sensors();
+    setup_leds();
     //led_connection_test();
-    motor_servo_test();
-    path_test();
-    delay(10000);
-    set_motor_speeds(MOTOR_SPEED_BASE, MOTOR_SPEED_BASE);
+    //motor_servo_test();
+    //path_test();
+    //delay(5000);
+    
+    //move_onto_line();
+
+    while(true){
+        int start=get_sensor_reading(START_BUTTON_PIN);
+        Serial.println(start);
+        delay(DELAY);
+         if (start==0){ //TODO change to 0
+            //time_left=MATCH_TIME;
+             move_onto_line(); //move from home onto track
+             break;
+         }
+         else{
+             ;
+         }
+    }
+
+    //go_back();
 
 }
 
 void loop() {
+  //follow_line();
+  //find_block();
+  //drop_block();
     /*we are always in 4 main states 
     1. start/move on line 
     2. find block
     3. drop block
     4. end/ back to base */ 
     /*move-> path detected -> if hold=0 -> find block-> detect block colour-> get block -> */
-
+/*
     //hardware initialisation
-    /
+    //
     setup_motors();
     setup_leds();
     setup_sensors();
@@ -51,32 +71,33 @@ void loop() {
         else{
             ;
         }
+        */
     }
 
-// void loop() {
-//     /*we are always in 4 main states 
-//     1. start/move on line 
-//     2. find block
-//     3. drop block
-//     4. end/ back to base */ 
-//     /*move-> path detected -> if hold=0 -> find block-> detect block colour-> get block -> */
+//void loop() {
+    /*we are always in 4 main states 
+        1. start/move on line 
+     2. find block
+     3. drop block
+     4. end/ back to base */ 
+     /*move-> path detected -> if hold=0 -> find block-> detect block colour-> get block -> */
 
-//     //START
-//     while(true){
-//         start=get_sensor_reading(START_BUTTON_PIN);
-//         if (start==1){
-//             time_left=MATCH_TIME;
-//             move_onto_line(); //move from home onto track
-//             break;
-//         }
-//         else{
-//             ;
-//         }
-//     }
+     //START
+     /*while(true){
+        start=get_sensor_reading(START_BUTTON_PIN);
+         if (start==1){
+            time_left=MATCH_TIME;
+             move_onto_line(); //move from home onto track
+             break;
+         }
+         else{
+             ;
+         }
+     }*/
 
-//     //keep trying to make laps and collect block when there's time
-//     while(time_left>LAP_TIME){
-        
+     //keep trying to make laps and collect block when there's time
+     //while(time_left>LAP_TIME){
+     /*   
         find_block(); //attempt to find block
         if ((hold==0) && fork_count==2){ //If block not found, try to find block at next left fork
             fork_count--;
@@ -85,9 +106,10 @@ void loop() {
         drop_block(); //attempt to drop block
         time_left=MATCH_TIME - difftime(time(0),start_time);
     }
+    */
     
-//     //return to START area
-//     go_back();
+     //return to START area
+     //go_back();
 
 
-// }
+  //}*/
