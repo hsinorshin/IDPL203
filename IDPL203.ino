@@ -21,7 +21,14 @@ void setup() {
       //delay(1000);
       //set_servo_position(i*10);
     //}
+
     set_servo_position(OPEN_CLAW_POSITION);
+
+/*
+    set_servo_position(OPEN_CLAW_POSITION);
+    delay(3000);
+    set_servo_position(CLOSE_CLAW_POSITION);
+    */
 
     //led_connection_test();
     //block_handling_test();
