@@ -12,35 +12,21 @@
 void setup() {
     Serial.begin(9600);
     Serial.print("Hello!");
-    setup_motors();
-    setup_sensors();
-    setup_leds();
+    // setup_motors();
+    // setup_sensors();
+    // setup_leds();
     //led_connection_test();
-    //motor_servo_test();
+    motor_servo_test();
+    Serial.print("Servo test done");
     //path_test();
     //delay(5000);
     
-    //move_onto_line();
-
-    while(true){
-        int start=get_sensor_reading(START_BUTTON_PIN);
-        Serial.println(start);
-        delay(DELAY);
-         if (start==0){ //TODO change to 0
-            //time_left=MATCH_TIME;
-             move_onto_line(); //move from home onto track
-             break;
-         }
-         else{
-             ;
-         }
-    }
-
-    //go_back();
+    
 
 }
 
 void loop() {
+    //block_handling_test();
   //follow_line();
   //find_block();
   //drop_block();
