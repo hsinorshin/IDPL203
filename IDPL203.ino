@@ -4,39 +4,53 @@
 */
 #include <time.h>
 #include "header.h"
+#include <hcsr04.h>
 
-//time_t start_time=time(0);
-
-
+time_t start_time=time(0);
+HCSR04 hcsr04(US_TRIG_PIN, US_ECHO_PIN, 20, 4000);
+int hold;
 
 void setup() {
     Serial.begin(9600);
     Serial.print("Hello!");
     setup_motors();
+    setup_servo();
     setup_sensors();
     setup_leds();
+    //for (int i=0; i<6; i++){
+      //delay(1000);
+      //set_servo_position(i*10);
+    //}
+    set_servo_position(OPEN_CLAW_POSITION);
+
     //led_connection_test();
-    //motor_servo_test();
+    //block_handling_test();
     //path_test();
     //delay(5000);
-    
-    //move_onto_line();
 
     while(true){
         int start=get_sensor_reading(START_BUTTON_PIN);
-        Serial.println(start);
         delay(DELAY);
          if (start==0){ //TODO change to 0
             //time_left=MATCH_TIME;
-             move_onto_line(); //move from home onto track
-             break;
-         }
-         else{
-             ;
+            move_onto_line(); //move from home onto track
+            break;
          }
     }
 
-    //go_back();
+    hold = 0;
+
+    //while(time_left>LAP_TIME){
+    find_block(); //attempt to find block
+    // if ((hold==0) && fork_count==2){ //If block not found, try to find block at next left fork
+    //     fork_count--;
+    //     reverse(20);
+    //     find_block();
+    // }
+    drop_block(); //attempt to drop block
+      //time_left=MATCH_TIME - difftime(time(0),start_time);
+    //}
+    go_back();
 
 }
 

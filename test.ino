@@ -19,26 +19,32 @@ void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time
 }
 
 void motor_servo_test() {
-  setup_motors();
-  setup_servo();
-  set_servo_position(OPEN_CLAW_POSITION*SERVO_GEAR_RATIO);
+  set_servo_position(10);
+  /*
+  Serial.println("at 0 degree");
+  set_servo_position(0);
   delay(3000);
-  set_servo_position(CLOSE_CLAW_POSITION*SERVO_GEAR_RATIO);
+  Serial.println("Go to 270 degrees");
+  set_servo_position(180);
   delay(3000);
-  set_servo_position(DETECTION_CLAW_POSITION*SERVO_GEAR_RATIO);
+  Serial.println("Go to 135 degrees");
+  set_servo_position(90);
   delay(3000);
-  set_motor_speeds(50,50);
-  delay(3000);
-
+  //set_motor_speeds(50,50);
+  //delay(3000);
+  */
 }
 
 void sensor_test() {
   //COLOUR_SENSOR_PIN = 26
   //read the input on colour_sensor_pin
-  int sensorValue= get_sensor_reading(COLOUR_SENSOR_PIN);
-  //print out the value you read
-  Serial.println(sensorValue);
-  delay(1); //delay in between reads for stability 
+  for (int i = 0; i <= 20; i++) {
+    int sensorValue = get_sensor_reading(US_ECHO_PIN);
+    //print out the value you read
+    Serial.println(sensorValue);
+    delay(1000); //delay in between reads for stability 
+  }
+
 }
 
 void path_test() //Path test for testing basic movement functions of the robot, examined by eye

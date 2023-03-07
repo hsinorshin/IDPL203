@@ -23,10 +23,9 @@
 #define MOTOR_SPEED_TURNING_DIFF 150
 #define MOTOR_SPEED_BASE 255
 #define GRABBER_BLOCK_DIST 1
-#define OPEN_CLAW_POSITION 180
+#define OPEN_CLAW_POSITION 70
 #define CLOSE_CLAW_POSITION 0
-#define DETECTION_CLAW_POSITION 10
-#define SERVO_GEAR_RATIO 1.5
+#define DETECTION_CLAW_POSITION 2
 #define FORK_DISTANCE 50
 #define BLUE 1
 #define HOME 2
@@ -48,6 +47,7 @@ void led_connection_test();
 void motor_servo_test();
 void sensor_test();
 void path_test();
+void block_handling_test();
 
 //navigation.ino
 

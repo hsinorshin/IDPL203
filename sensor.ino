@@ -5,7 +5,10 @@
     US_SENSOR : US emitter + US receiver , output = int distance 
 */
 
+#include <hcsr04.h>
 #include "header.h"
+
+
 
 void setup_sensors() {
   pinMode(START_BUTTON_PIN, INPUT);
@@ -14,13 +17,14 @@ void setup_sensors() {
   pinMode(LINE_SENSOR_3_PIN, INPUT);
   pinMode(LINE_SENSOR_4_PIN, INPUT);
   pinMode(COLOUR_SENSOR_PIN, INPUT);
-  pinMode(US_ECHO_PIN, INPUT);
-  pinMode(US_TRIG_PIN, OUTPUT);
 }
 
 int get_sensor_reading(int sensor_pin){
 
   switch(sensor_pin){
+    case US_ECHO_PIN:
+      return (int)hcsr04.distanceInMillimeters();
+      
     case START_BUTTON_PIN:
     //high when pressed (start)
     return digitalRead(START_BUTTON_PIN);
@@ -44,15 +48,11 @@ int get_sensor_reading(int sensor_pin){
     case COLOUR_SENSOR_PIN:
     //high for blue, low for anything else(red)
     int state=digitalRead(COLOUR_SENSOR_PIN);
-    if (state==1){
-      return BLUE;
-    }
-    else{
-      return RED;
-    }
+    return state;
      
 
-    case US_ECHO_PIN:
+
+    /*
     //range of US is 2cm - 400cm
     long duration;
     int distance;
@@ -74,7 +74,7 @@ int get_sensor_reading(int sensor_pin){
 
     // Prints the distance on the Serial Monitor
     return distance; 
-    
+    */
 
   }
 }
