@@ -20,20 +20,20 @@ void follow_line(){
     else if (left_sensor_val == 1 && right_sensor_val == 0) {
         //Too far to the right, moving left 
         right_speed = MOTOR_SPEED_BASE;
-        left_speed = 50;
+        left_speed = 0;
         last_offset = true;
     }
     else if (left_sensor_val == 0 && right_sensor_val == 1) {
         //Too far to the left, moving right
-        right_speed = 50;
+        right_speed = 0;
         left_speed = MOTOR_SPEED_BASE;
         last_offset = false;
     }
     else if (left_sensor_val == 0 && right_sensor_val == 0) {
         //Lost track, start reverse sequence
         recover_to_line();
-        //right_speed = MOTOR_SPEED_BASE;
-        //left_speed = MOTOR_SPEED_BASE;
+        right_speed = MOTOR_SPEED_BASE;
+        left_speed = MOTOR_SPEED_BASE;
     }
     set_motor_speeds(left_speed, right_speed);
 }
@@ -41,29 +41,32 @@ void recover_to_line() { //Recovery algorithm for if we lose track of the line
     int current_left_speed = get_left_motor_speed();
     int current_right_speed = get_right_motor_speed();
     bool direction =  last_offset; //Turn in opposite direction to direction of previous offset (turn left if true, turn right if false)
-    int angle_delta = 1;
+    float angle_delta = 1;
     if (!direction) angle_delta = -angle_delta;
     bool line_found = false;
-    int count = 0; //Limit iterations in one direction
-    const int MAX_COUNT = 70 / abs(angle_delta); //Do enough iterations to rotate 90 degrees
-    while(!line_found && count < MAX_COUNT){
-        turn(angle_delta, true);
-        int left_sensor_val = get_sensor_reading(LINE_SENSOR_1_PIN);
-        int right_sensor_val = get_sensor_reading(LINE_SENSOR_2_PIN);
-        line_found = left_sensor_val == 1 && right_sensor_val == 1;
-        count++;
+    while(!line_found) {
+      int count = 0; //Limit iterations in one direction
+      const int MAX_COUNT = 90 / abs(angle_delta); //Do enough iterations to rotate 90 degrees
+      while(!line_found && count < MAX_COUNT){
+          turn(angle_delta, true);
+          int left_sensor_val = get_sensor_reading(LINE_SENSOR_1_PIN);
+          int right_sensor_val = get_sensor_reading(LINE_SENSOR_2_PIN);
+          line_found = left_sensor_val == 1 && right_sensor_val == 1;
+          count++;
+      }
+      if (!line_found) { //Try opposite direction if line not found
+          angle_delta *= -1;
+          count = 0;
+          while(!line_found && count < MAX_COUNT * 2.2){ //Try going 1.5x the rotation in opposite direction (360)
+              turn(angle_delta, true);
+              int left_sensor_val = get_sensor_reading(LINE_SENSOR_1_PIN);
+              int right_sensor_val = get_sensor_reading(LINE_SENSOR_2_PIN);
+              line_found = left_sensor_val == 1 && right_sensor_val == 1;
+              count++;
+          }   
+      }
     }
-    if (!line_found) { //Try opposite direction if line not found
-        angle_delta *= -1;
-        count = 0;
-        while(!line_found && count < MAX_COUNT * 2.2){ //Try going 1.5x the rotation in opposite direction (360)
-            turn(angle_delta, true);
-            int left_sensor_val = get_sensor_reading(LINE_SENSOR_1_PIN);
-            int right_sensor_val = get_sensor_reading(LINE_SENSOR_2_PIN);
-            line_found = left_sensor_val == 1 && right_sensor_val == 1;
-            count++;
-        }   
-    }
+
 }
 
 void move_onto_line() { //For when moving out of start box and on to the line
@@ -139,7 +142,7 @@ void go_back(){
         }
     }
     else if(fork_count>HOME){
-        turn(180); //Spin to face line
+        turn(180, false); //Spin to face line
         while (cont){ //While yet to detect home fork (on left now)
             follow_line(); //Line following loop
             delay(DELAY);
@@ -149,7 +152,7 @@ void go_back(){
 
     forward(WHEELBASE); //Move forward wheelbase of car (rear axle now over line)
     if (fork_count<HOME) turn(-90, false); //Turn to face box
-    else turn(90);
+    else turn(90, false);
 
     forward(2.2*WHEELBASE); //Move forward into box
   

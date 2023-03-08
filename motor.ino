@@ -21,6 +21,7 @@ void setup_motors() {
     AFMS.begin();
     left_motor_speed = 0;
     right_motor_speed = 0;
+    set_motor_speeds(0,0);
 }
 
 
