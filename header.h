@@ -17,26 +17,25 @@
 
 //Other constants
 //all distances in cm, angle in degrees, time in seconds
-#define DELAY 50 //in ms, how long to wait between iterations
-#define WHEELBASE 13
-#define BLOCK_ROTATION_ANGLE 45
-#define MOTOR_SPEED_TURNING_DIFF 150
-#define MOTOR_SPEED_BASE 255
-#define GRABBER_BLOCK_DIST 1
-#define OPEN_CLAW_POSITION 140
-#define CLOSE_CLAW_POSITION 65
-#define DETECTION_CLAW_POSITION 0
-#define FORK_DISTANCE 50
-#define BLUE 1
+#define DELAY 25 //in ms, how long to wait between iterations
+#define WHEELBASE 13 //Distance from rake to point of contact of rear wheels
+#define BLOCK_ROTATION_ANGLE 45 //Angle to rotate to point towards block for picking up
+#define MOTOR_SPEED_BASE 250 //Motor values
+#define OPEN_CLAW_POSITION 65 //These claw positions need to be amended during servo calibration
+#define CLOSE_CLAW_POSITION 10 //Ideally have these values around mid-range, i.e., 90
+#define DETECTION_CLAW_POSITION 10 
+
+#define BLUE 1 //The positions of the different bays i.e., traversing anticlockwise, blue is first, then the home bay, then red
 #define HOME 2
 #define RED 3
-#define MATCH_TIME 300
-#define LAP_TIME 60
-#define AXLE_LENGTH 25.7
+#define MATCH_TIME 300 //The 
+#define LAP_TIME 70 //Upper bound on the time to complete a lap, including picking up and dropping off black
+#define RETURN_TIME 20 //Upper bound on the time needed after dropping of a block to return to the start box
+#define AXLE_LENGTH 25.7 //From one rear wheel to another
 #define WHEEL_RADIUS 4
+
 extern double time_left;
 extern int start;
-extern int hold; //1 if the robot is handling a block
 extern int fork_count;
 extern bool last_offset; //true if to the right, false if to the left
 
@@ -50,7 +49,6 @@ void path_test();
 void block_handling_test();
 
 //navigation.ino
-
 void follow_line();
 void recover_to_line();
 void move_onto_line();
@@ -63,6 +61,7 @@ void set_motor_speeds(int left_motor_speed, int right_motor_speed);
 void set_servo_position(int angle);
 int get_left_motor_speed();
 int get_right_motor_speed();
+void clap();
 
 //sensor.ino
 void setup_sensors();

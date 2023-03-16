@@ -7,7 +7,7 @@
 
 #include <hcsr04.h>
 #include "header.h"
-
+HCSR04 hcsr04(US_TRIG_PIN, US_ECHO_PIN, 20, 4000); //Ultrasound sensor
 
 
 void setup_sensors() {
@@ -19,7 +19,7 @@ void setup_sensors() {
   pinMode(COLOUR_SENSOR_PIN, INPUT);
 }
 
-int get_sensor_reading(int sensor_pin){
+int get_sensor_reading(int sensor_pin){ //Integer value of pin readings, method of measurement depends on pin
 
   switch(sensor_pin){
     case US_ECHO_PIN:
@@ -49,33 +49,7 @@ int get_sensor_reading(int sensor_pin){
     //high for blue, low for anything else(red)
     int state=digitalRead(COLOUR_SENSOR_PIN);
     return state;
-     
-
-
-    /*
-    //range of US is 2cm - 400cm
-    long duration;
-    int distance;
-
-    //Clears the trigPin 
-    digitalWrite(US_TRIG_PIN,LOW);
-    delayMicroseconds(2);
-
-    // Sets the trigPin on HIGH state for 10 micro seconds
-    digitalWrite(US_TRIG_PIN, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(US_TRIG_PIN, LOW);
-
-    // Reads the echoPin, returns the sound wave travel time in microseconds
-    duration = pulseIn(US_ECHO_PIN, HIGH);
-
-    // Calculating the distance in cm 
-    distance = duration * 0.034 / 2;
-
-    // Prints the distance on the Serial Monitor
-    return distance; 
-    */
-
+    
   }
 }
   

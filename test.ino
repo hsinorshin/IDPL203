@@ -5,8 +5,7 @@
 #include "header.h"
 
 
-
-void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time 
+void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time, check if they are working
   set_led_val(RED_INDICATOR_LED_PIN, true);
   delay(5000);
   set_led_val(RED_INDICATOR_LED_PIN, false);
@@ -18,24 +17,7 @@ void led_connection_test() { //Will attempt to flash LEDs for 500ms at a time
   set_led_val(AMBER_INDICATOR_LED_PIN, false);
 }
 
-void motor_servo_test() {
-  set_servo_position(10);
-  /*
-  Serial.println("at 0 degree");
-  set_servo_position(0);
-  delay(3000);
-  Serial.println("Go to 270 degrees");
-  set_servo_position(180);
-  delay(3000);
-  Serial.println("Go to 135 degrees");
-  set_servo_position(90);
-  delay(3000);
-  //set_motor_speeds(50,50);
-  //delay(3000);
-  */
-}
-
-void sensor_test() {
+void sensor_test() { //For testing the ultrasound sensor, get 20 readings with a second between them
   //COLOUR_SENSOR_PIN = 26
   //read the input on colour_sensor_pin
   for (int i = 0; i <= 20; i++) {
@@ -50,28 +32,28 @@ void sensor_test() {
 void path_test() //Path test for testing basic movement functions of the robot, examined by eye
 {
   Serial.println("Starting path test");
+
   Serial.println("Move forward 80cm");
-  forward(70);
+  forward(80);
   delay(3000);
+
   Serial.println("Move backward 800cm");
-  reverse(70);
+  reverse(80);
   delay(3000);
-  Serial.println("Turning left");
+
+  Serial.println("Turning"); //Left 90, Right 90
   turn(90, false);
   delay(3000);
   turn(-90, false);
   delay(3000);
-  /*
-  Serial.println("Turning right");
-  turn(-90);
-  turn(90);
-  */
+
   Serial.println("Stopping");
   stop();
+
   Serial.print("Path test ended");
 }
 
-void block_handling_test() {
+void block_handling_test() { //Test for checking if the robot can pick up a block, and release it, examined by eye
   Serial.println("Start block handling test");
   Serial.println("Grab the block");
   grab_block();
@@ -79,5 +61,3 @@ void block_handling_test() {
   release_block();
   Serial.println("test ended");
 }
-
-
