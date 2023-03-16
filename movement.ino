@@ -21,7 +21,7 @@ void turn(int angle, bool keep_moving){ //To turn a specified angle, pivoting ar
     else set_motor_speeds(MOTOR_SPEED_BASE, -MOTOR_SPEED_BASE);
 
     delay(move_time); 
-    if (!keep_moving) set_motor_speeds(0,0);
+    if (!keep_moving) stop();
 
 }
 

@@ -19,6 +19,10 @@ void setup() { //Essentially the main function
     setup_servo();
     setup_sensors();
 
+} 
+
+void loop() {
+
     //Start in open position for travelling (needs to open to traverse ramp)
     set_servo_position(OPEN_CLAW_POSITION);
 
@@ -43,8 +47,5 @@ void setup() { //Essentially the main function
     //After n loops, return to the start box
     go_back();
     clap(); //Celebrate at the end!
-} 
-
-void loop() {
 
 }
