@@ -1,13 +1,13 @@
 //Arduino pin constants
 
 #define START_BUTTON_PIN 2
-#define AMBER_INDICATOR_LED_PIN 3
-#define RED_INDICATOR_LED_PIN 4
-#define GREEN_INDICATOR_LED_PIN 5
-#define LINE_SENSOR_1_PIN A2 //Inner left line sensor
-#define LINE_SENSOR_2_PIN A3 //Inner right line sensor
-#define LINE_SENSOR_3_PIN 12 //Outer left line sensor
-#define LINE_SENSOR_4_PIN 13 //Outer right line sensor
+#define RED_INDICATOR_LED_PIN 5
+#define GREEN_INDICATOR_LED_PIN 4
+#define AMBER_INDICATOR_LED_PIN 3 
+#define LINE_SENSOR_1_PIN 13 //Inner left line sensor
+#define LINE_SENSOR_2_PIN 12 //Inner right line sensor
+#define LINE_SENSOR_3_PIN A3//Outer left line sensor
+#define LINE_SENSOR_4_PIN A2 //Outer right line sensor
 #define COLOUR_SENSOR_PIN 11
 #define US_TRIG_PIN 6
 #define US_ECHO_PIN 7
@@ -17,27 +17,25 @@
 
 //Other constants
 //all distances in cm, angle in degrees, time in seconds
-#define DELAY 50 //in ms, how long to wait between iterations
-#define WHEELBASE 12.5
-#define BLOCK_ROTATION_ANGLE 45
-#define MOTOR_SPEED_TURNING_DIFF 150
-#define MOTOR_SPEED_BASE 255
-#define GRABBER_BLOCK_DIST 1
-#define OPEN_CLAW_POSITION 180
-#define CLOSE_CLAW_POSITION 0
-#define DETECTION_CLAW_POSITION 10
-#define SERVO_GEAR_RATIO 1.5
-#define FORK_DISTANCE 50
-#define BLUE 1
+#define DELAY 25 //in ms, how long to wait between iterations
+#define WHEELBASE 13 //Distance from rake to point of contact of rear wheels
+#define BLOCK_ROTATION_ANGLE 45 //Angle to rotate to point towards block for picking up
+#define MOTOR_SPEED_BASE 250 //Motor values
+#define OPEN_CLAW_POSITION 65 //These claw positions need to be amended during servo calibration
+#define CLOSE_CLAW_POSITION 10 //Ideally have these values around mid-range, i.e., 90
+#define DETECTION_CLAW_POSITION 10 
+
+#define BLUE 1 //The positions of the different bays i.e., traversing anticlockwise, blue is first, then the home bay, then red
 #define HOME 2
 #define RED 3
-#define MATCH_TIME 300
-#define LAP_TIME 60
-#define AXLE_LENGTH 25.7
+#define MATCH_TIME 300 //The 
+#define LAP_TIME 70 //Upper bound on the time to complete a lap, including picking up and dropping off black
+#define RETURN_TIME 20 //Upper bound on the time needed after dropping of a block to return to the start box
+#define AXLE_LENGTH 25.7 //From one rear wheel to another
 #define WHEEL_RADIUS 4
+
 extern double time_left;
 extern int start;
-extern int hold; //1 if the robot is handling a block
 extern int fork_count;
 extern bool last_offset; //true if to the right, false if to the left
 
@@ -48,9 +46,9 @@ void led_connection_test();
 void motor_servo_test();
 void sensor_test();
 void path_test();
+void block_handling_test();
 
 //navigation.ino
-
 void follow_line();
 void recover_to_line();
 void move_onto_line();
@@ -63,6 +61,7 @@ void set_motor_speeds(int left_motor_speed, int right_motor_speed);
 void set_servo_position(int angle);
 int get_left_motor_speed();
 int get_right_motor_speed();
+void clap();
 
 //sensor.ino
 void setup_sensors();

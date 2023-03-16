@@ -5,9 +5,10 @@
 #include "header.h"
 
 void setup_leds() {
+    pinMode(AMBER_INDICATOR_LED_PIN, OUTPUT);
+    set_led_val(AMBER_INDICATOR_LED_PIN, false); //Should start low as not moving
     pinMode(RED_INDICATOR_LED_PIN, OUTPUT);
     pinMode(GREEN_INDICATOR_LED_PIN, OUTPUT);
-    pinMode(AMBER_INDICATOR_LED_PIN, OUTPUT);
 }
 
 void set_led_val(int led_pin, bool val) {
@@ -15,7 +16,7 @@ void set_led_val(int led_pin, bool val) {
     else digitalWrite(led_pin, LOW);
 }
 
-void blink(int led_pin,int times){
+void blink(int led_pin,int times){ //Flash an led on and off a certain number of times
     while(times>=0){
     digitalWrite(led_pin, HIGH);  // turn the LED on (HIGH is the voltage level)
     delay(1000);                      // wait for a second
@@ -23,5 +24,4 @@ void blink(int led_pin,int times){
     delay(1000);                      // wait for a second
     times--;
     }
-    
 }
